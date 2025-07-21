@@ -1,81 +1,57 @@
-# YOLOv8 Flask Tabanlı Canlı Obje Tespiti
+# YOLOv8 Live Object Detection with Flask and Docker
 
-Bu proje, YOLOv8 modeli kullanarak gerçek zamanlı obje/yüz tespiti yapar ve Flask ile web üzerinden canlı görüntü sağlar.
+This project is a simple real-time object detection app using YOLOv8 and a webcam.  
+It runs as a Flask web app and shows live detection results in the browser.  
+You can also run it inside a Docker container for easy deployment.
 
-## 🎯 Özellikler
+## Features
 
-- YOLOv8 (Ultralytics) ile gerçek zamanlı nesne/yüz tespiti
-- Flask ile web arayüzü
-- Kamera üzerinden canlı yayın
-- Docker ile kolay dağıtım
+- Real-time object/face detection
+- Flask-based web interface
+- Docker support for portability
 
-## 🖼️ Arayüz Görünümü
+## Getting Started
 
-Web arayüzü:
-
-http://localhost:5000
-
-
-![örnek](https://via.placeholder.com/720x400.png?text=Canl%C4%B1+Obje+Tespiti+%28Web+Aray%C3%BCz%C3%BC%29)
-
----
-
-## 🧱 Proje Dizini
-
-yolo-flask-app/
-├── app.py # Flask uygulaması
-├── detect_utils.py # Kamera ve YOLOv8 entegrasyonu
-├── yolov8n.pt # YOLOv8 model dosyası
-├── Dockerfile # Docker imajı için yapılandırma
-├── requirements.txt # Python bağımlılıkları
-└── README.md # Bu dosya
-
-
----
-
-## ⚙️ Gereksinimler
-
-- Python 3.8+
-- OpenCV
-- Ultralytics YOLOv8
-- Flask
-
-Tüm bağımlılıkları yüklemek için:
+### 1. Clone the repo
 
 ```bash
+git clone https://github.com/your-username/yolov8-live-detection.git
+cd yolov8-live-detection
+
+2. Install requirements (for local setup)
+
 pip install -r requirements.txt
 
-🚀 Uygulamayı Başlat
+Make sure you have a webcam connected.
+3. Run the app
 
 python app.py
 
-Sonrasında tarayıcıdan şu adrese gir:
+Visit http://localhost:5000 in your browser to see the live detection.
+Docker Usage
 
-http://localhost:5000
+You can also run everything in a Docker container:
 
-🐳 Docker ile Çalıştırma
+docker build -t yolov8-app .
+docker run -p 5000:5000 --device=/dev/video0 yolov8-app
 
-docker build -t yolo-flask-app .
-docker run -p 5000:5000 --device=/dev/video0 yolo-flask-app
+Make sure /dev/video0 is your camera device.
+Project Structure
 
-    --device=/dev/video0 kısmı, kamera erişimi için gereklidir.
+.
+├── app.py              # Main Flask application
+├── detect_utils.py     # Frame grabbing and YOLOv8 detection
+├── requirements.txt    # Python dependencies
+├── Dockerfile          # Docker image build config
+└── README.md
 
-📦 YOLOv8 Model Dosyası
+Notes
 
-Model dosyasını Ultralytics üzerinden indir:
+    This app uses a YOLOv8 model trained or downloaded from Ultralytics.
 
-from ultralytics import YOLO
-YOLO('yolov8n.pt')  # otomatik indirir
+    It works with faces, people, or any objects the model is trained on.
 
-Ya da manuel olarak yolov8n.pt dosyasını proje dizinine koy.
-✍️ Yazılım Geliştirici
+License
 
-Alper Temizel
-📫 GitHub: @alpertemizel
-🧠 Kaynaklar
-
-    Ultralytics YOLOv8 GitHub
-
-    Flask Documentation
-
-    OpenCV
+This project is open-source and available under the MIT License.
+Feel free to modify or use it in your own projects.
